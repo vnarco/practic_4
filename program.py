@@ -1,8 +1,10 @@
+"""Практическая работа №4, Вариант 14"""
 import numpy as np
 import sys
 
 
 def array_size():
+    """Ввод размеров текущего размера (Создаётся нулевой массив)"""
     try:
         height = int(input('Введите высоту массива: '))
         width = int(input('Введите ширину массива: '))
@@ -13,7 +15,9 @@ def array_size():
     zero_array = np.zeros((height, width))
     return zero_array
 
+
 def create_array(new_array):
+    """Создание массива с выбираемым вариантов заполнения"""
     global flag
     if isinstance(new_array, str):
         print('Не указаны размеры массива.')
@@ -49,19 +53,26 @@ def create_array(new_array):
         print('Неверная команда.')
         return new_array
 
+
 def print_array(new_array):
+    """Вывод текущего массива"""
     print('Текущий массив:')
     max_len = max(len(str(x)) for row in new_array for x in row)
     for row in new_array:
         print(" ".join(f"{x:>{max_len}}" for x in row))
 
+
 def functions(new_array):
+    """Выполнение функция варианта 14"""
     print('\nСписок функций:\n'
           'a - Заменить все элементы, которые меньше 10, числом 42.\n'
-          'b - Преобразовать матрицу: поэлементно вычесть последнюю строку из всех строк, кроме последней.\n'
-          'c - Вывести номера тех строк массива, в которых есть хотя бы один элемент, равный 10.\n'
+          'b - Преобразовать матрицу: поэлементно вычесть последнюю '
+          'строку из всех строк, кроме последней.\n'
+          'c - Вывести номера тех строк массива, в которых есть хотя бы '
+          'один элемент, равный 10.\n'
           'd - Найти столбец с наибольшей суммой элементов.\n'
-          'e - Поменять местами элементы матрицы симметрично побочной диагонали.\n')
+          'e - Поменять местами элементы матрицы симметрично '
+          'побочной диагонали.\n')
     choice_function = input('Выбор функции: ')
     if choice_function == 'a':
         new_array[new_array < 10] = 42
@@ -83,7 +94,9 @@ def functions(new_array):
         max_sum = column_sums.max()
         max_columns_indices = np.where(column_sums == max_sum)[0]
         max_columns_numbers = max_columns_indices + 1
-        print('Номера столбцов с максимальной суммой:', ', '.join(str(x) for x in max_columns_numbers), '(сумма:', max_sum, ')')
+        print('Номера столбцов с максимальной суммой:',
+              ', '.join(str(x) for x in max_columns_numbers),
+              '(сумма:', max_sum, ')')
         return new_array
     elif choice_function == 'e':
         if new_array.shape[0] != new_array.shape[1]:
@@ -92,15 +105,16 @@ def functions(new_array):
         n = new_array.shape[0]
         for i in range(n):
             for j in range(n - 1 - i):
-                new_array[i, j], new_array[n - 1 - j, n - 1 - i] = new_array[n - 1 - j, n - 1 - i], new_array[i, j]
+                new_array[i, j], new_array[n - 1 - j, n - 1 - i] = (
+                    new_array[n - 1 - j, n - 1 - i], new_array[i, j])
         return new_array
     else:
         print('Такой функции не существует')
         return new_array
 
 
-
 def menu():
+    """Меню программы"""
     while True:
         global array, flag
         print('\nВыбор действий:\n'
@@ -133,6 +147,7 @@ def menu():
             sys.exit()
         else:
             print('Неверная команда.')
+
 
 array = ''
 flag = False
