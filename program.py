@@ -72,7 +72,8 @@ def functions(new_array):
           'один элемент, равный 10.\n'
           'd - Найти столбец с наибольшей суммой элементов.\n'
           'e - Поменять местами элементы матрицы симметрично '
-          'побочной диагонали.\n')
+          'побочной диагонали.\n'
+          '0 - Назад.\n')
     choice_function = input('Выбор функции: ')
     if choice_function == 'a':
         new_array[new_array < 10] = 42
@@ -107,6 +108,8 @@ def functions(new_array):
             for j in range(n - 1 - i):
                 new_array[i, j], new_array[n - 1 - j, n - 1 - i] = (
                     new_array[n - 1 - j, n - 1 - i], new_array[i, j])
+        return new_array
+    elif choice_function == '0':
         return new_array
     else:
         print('Такой функции не существует')
