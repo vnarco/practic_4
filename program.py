@@ -11,14 +11,25 @@ def array_size():
     zero_array = np.zeros((height, width))
     return zero_array
 
-def create_array():
+def create_array(new_array):
+    if isinstance(new_array, str):
+        print('Не указаны размеры массива.')
+        return
     print('\nВарианты заполнения массива:\n'
           '1 - Вручную\n'
           '2 - Автоматически\n'
           '3 - Назад\n')
-    choice_create = int(input('Введите желаемый вариант заполнения:'))
+    choice_create = int(input('Введите желаемый вариант заполнения: '))
     if choice_create == 1:
-        print(f'Выполнение функции {choice_create}')
+        rows, columns = new_array.shape
+        values = []
+        for row in range(rows):
+            values_in_row = []
+            for column in range(columns):
+                value = int(input(f'{row+1} строка {column+1} столбец: '))
+                values_in_row.append(value)
+            values.append(values_in_row)
+        return np.array(values)
     if choice_create == 2:
         print(f'Выполнение функции {choice_create}')
     if choice_create == 3:
@@ -43,7 +54,7 @@ def menu():
             else:
                 print(array)
         elif choice == 2:
-            print(f'Выполнение функции {choice}')
+            array = create_array(array)
         elif choice == 3:
             print(f'Выполнение функции {choice}')
         elif choice == 4:
