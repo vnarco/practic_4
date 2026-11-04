@@ -1,4 +1,5 @@
 import numpy as np
+import sys
 from numpy.ma.extras import column_stack
 
 
@@ -22,7 +23,7 @@ def create_array(new_array):
           '1 - Вручную\n'
           '2 - Автоматически\n'
           '3 - Назад\n')
-    choice_create = int(input('Введите желаемый вариант заполнения: '))
+    choice_create = input('Введите желаемый вариант заполнения: ')
     if choice_create == 1:
         rows, columns = new_array.shape
         values = []
@@ -106,7 +107,7 @@ def menu():
               '3 - Просмотр заданного массива\n'
               '4 - Выполнение функций\n'
               '5 - Выход\n')
-        choice = int(input('Введите действие: '))
+        choice = input('Введите действие: ')
         if choice == 1:
             array = array_size()
             if isinstance(array, np.ndarray):
@@ -126,9 +127,9 @@ def menu():
             else:
                 print('Массив не был создан.')
         elif choice == 5:
-            print(f'Выполнение функции {choice}')
+            sys.exit()
         else:
-            print('Ошибка')
+            print('Неверная команда.')
 
 array = ''
 flag = False
