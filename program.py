@@ -62,18 +62,18 @@ def functions(new_array):
           'e - Сделать функцию, меняющую местами элементы матрицы симметрично побочной диагонали.\n')
     choice_function = input('Выбор функции: ')
     if choice_function == 'a':
+        new_array[new_array < 10] = 42
+    elif choice_function == 'b':
         print(f'Выполнение функции {choice_function}')
-    if choice_function == 'b':
+    elif choice_function == 'c':
         print(f'Выполнение функции {choice_function}')
-    if choice_function == 'c':
-        print(f'Выполнение функции {choice_function}')
-    if choice_function == 'd':
+    elif choice_function == 'd':
         print(f'Выполнение функции {choice_function}')
     if choice_function == 'e':
         print(f'Выполнение функции {choice_function}')
     else:
         print(f'Выполнение функции {choice_function}')
-    
+
 
 
 def menu():
