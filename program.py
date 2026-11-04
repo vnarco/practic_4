@@ -23,23 +23,31 @@ def create_array(new_array):
     if choice_create == 1:
         rows, columns = new_array.shape
         values = []
-        for row in range(rows):
-            values_in_row = []
-            for column in range(columns):
-                value = int(input(f'{row+1} строка {column+1} столбец: '))
-                values_in_row.append(value)
-            values.append(values_in_row)
+        try:
+            for row in range(rows):
+                values_in_row = []
+                for column in range(columns):
+                    value = int(input(f'{row+1} строка {column+1} столбец: '))
+                    values_in_row.append(value)
+                values.append(values_in_row)
+        except ValueError:
+            print('В массиве могут быть только целые числа')
+            return new_array
+        print('Значения записаны в массив.')
         return np.array(values)
-    if choice_create == 2:
+    elif choice_create == 2:
+        print('Массив заполнен автоматически.')
         return np.random.randint(0, 101, new_array.shape)
-    if choice_create == 3:
+    elif choice_create == 3:
         return new_array
     else:
-        print(f'Выполнение функции {choice_create}')
+        print('Неверная команда.')
+        return new_array
 
 
 def menu():
     while True:
+        global array
         print('\nВыбор действий:\n'
               '1 - Ввод размера\n'
               '2 - Создание массива\n'
