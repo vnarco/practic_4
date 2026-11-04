@@ -1,10 +1,15 @@
 import numpy as np
 
 def array_size():
-    height = int(input('Введите высоту массива: '))
-    width = int(input('Введите ширину массива: '))
-    array = np.zeros((height, width))
-    return array
+    try:
+        height = int(input('Введите высоту массива: '))
+        width = int(input('Введите ширину массива: '))
+    except ValueError:
+        return 'Размеры должны быть целыми положительными числами'
+    if height <= 0 or width <= 0:
+        return 'Размеры должны быть целыми положительными числами'
+    zero_array = np.zeros((height, width))
+    return zero_array
 
 def menu():
     while True:
@@ -16,7 +21,11 @@ def menu():
               '5 - Выход\n')
         choice = int(input('Введите действие: '))
         if choice == 1:
-            print(f'Выполнение функции {choice}')
+            array = array_size()
+            if isinstance(array, np.ndarray):
+                print('Размеры массивы зафиксированы.')
+            else:
+                print(array)
         elif choice == 2:
             print(f'Выполнение функции {choice}')
         elif choice == 3:
@@ -27,4 +36,6 @@ def menu():
             print(f'Выполнение функции {choice}')
         else:
             print('Ошибка')
+
+array = ''
 menu()
