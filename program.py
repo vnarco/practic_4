@@ -63,8 +63,10 @@ def functions(new_array):
     choice_function = input('Выбор функции: ')
     if choice_function == 'a':
         new_array[new_array < 10] = 42
+        return new_array
     elif choice_function == 'b':
-        print(f'Выполнение функции {choice_function}')
+        new_array[:-1] = new_array[:-1] - new_array[-1]
+        return new_array
     elif choice_function == 'c':
         print(f'Выполнение функции {choice_function}')
     elif choice_function == 'd':
@@ -101,7 +103,7 @@ def menu():
                 print('Массив не был создан.')
         elif choice == 4:
             if flag:
-                functions(array)
+                array = functions(array)
             else:
                 print('Массив не был создан.')
         elif choice == 5:
