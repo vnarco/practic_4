@@ -1,4 +1,6 @@
 import numpy as np
+from numpy.ma.extras import column_stack
+
 
 def array_size():
     try:
@@ -53,6 +55,47 @@ def print_array(new_array):
     for row in new_array:
         print(" ".join(f"{x:>{max_len}}" for x in row))
 
+def functions(new_array):
+    print('\nСписок функций:\n'
+          'a - Заменить все элементы, которые меньше 10, числом 42.\n'
+          'b - Преобразовать матрицу: поэлементно вычесть последнюю строку из всех строк, кроме последней.\n'
+          'c - Вывести номера тех строк массива, в которых есть хотя бы один элемент, равный 10.\n'
+          'd - Найти столбец с наибольшей суммой элементов.\n'
+          'e - Поменять местами элементы матрицы симметрично побочной диагонали.\n')
+    choice_function = input('Выбор функции: ')
+    if choice_function == 'a':
+        new_array[new_array < 10] = 42
+        return new_array
+    elif choice_function == 'b':
+        new_array[:-1] = new_array[:-1] - new_array[-1]
+        return new_array
+    elif choice_function == 'c':
+        mask = (new_array == 10).any(axis=1)
+        row_indices = np.where(mask)[0]
+        if len(row_indices) > 0:
+            numbers = ', '.join(str(i + 1) for i in row_indices)
+            print(f'Найденные строки: {numbers}')
+        else:
+            print('Указанных строк в массиве нет')
+        return new_array
+    elif choice_function == 'd':
+        column_sums = new_array.sum(axis=0)
+        max_sum = column_sums.max()
+        max_columns_indices = np.where(column_sums == max_sum)[0]
+        max_columns_numbers = max_columns_indices + 1
+        print('Номера столбцов с максимальной суммой:', ', '.join(str(x) for x in max_columns_numbers), '(сумма:', max_sum, ')')
+        return new_array
+    elif choice_function == 'e':
+        n = new_array.shape[0]
+        for i in range(n):
+            for j in range(n - 1 - i):
+                new_array[i, j], new_array[n - 1 - j, n - 1 - i] = new_array[n - 1 - j, n - 1 - i], new_array[i, j]
+        return new_array
+    else:
+        print('Такой функции не существует')
+        return new_array
+
+
 
 def menu():
     while True:
@@ -78,7 +121,10 @@ def menu():
             else:
                 print('Массив не был создан.')
         elif choice == 4:
-            print(f'Выполнение функции {choice}')
+            if flag:
+                array = functions(array)
+            else:
+                print('Массив не был создан.')
         elif choice == 5:
             print(f'Выполнение функции {choice}')
         else:
