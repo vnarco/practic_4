@@ -68,10 +68,17 @@ def functions(new_array):
         new_array[:-1] = new_array[:-1] - new_array[-1]
         return new_array
     elif choice_function == 'c':
-        print(f'Выполнение функции {choice_function}')
+        mask = (new_array == 10).any(axis=1)
+        row_indices = np.where(mask)[0]
+        if len(row_indices) > 0:
+            numbers = ", ".join(str(i + 1) for i in row_indices)
+            print(f"Найденные строки: {numbers}")
+        else:
+            print("Указанных строк в массиве нет")
+        return new_array
     elif choice_function == 'd':
         print(f'Выполнение функции {choice_function}')
-    if choice_function == 'e':
+    elif choice_function == 'e':
         print(f'Выполнение функции {choice_function}')
     else:
         print(f'Выполнение функции {choice_function}')
