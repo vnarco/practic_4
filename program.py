@@ -1,6 +1,5 @@
 import numpy as np
 import sys
-from numpy.ma.extras import column_stack
 
 
 def array_size():
@@ -87,6 +86,9 @@ def functions(new_array):
         print('Номера столбцов с максимальной суммой:', ', '.join(str(x) for x in max_columns_numbers), '(сумма:', max_sum, ')')
         return new_array
     elif choice_function == 'e':
+        if new_array.shape[0] != new_array.shape[1]:
+            print('Функция доступна только для квадратных матриц.')
+            return new_array
         n = new_array.shape[0]
         for i in range(n):
             for j in range(n - 1 - i):
@@ -100,7 +102,7 @@ def functions(new_array):
 
 def menu():
     while True:
-        global array
+        global array, flag
         print('\nВыбор действий:\n'
               '1 - Ввод размера\n'
               '2 - Создание массива\n'
@@ -111,6 +113,7 @@ def menu():
         if choice == '1':
             array = array_size()
             if isinstance(array, np.ndarray):
+                flag = False
                 print('Размеры массивы зафиксированы.')
             else:
                 print(array)
