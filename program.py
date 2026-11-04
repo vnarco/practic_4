@@ -12,6 +12,7 @@ def array_size():
     return zero_array
 
 def create_array(new_array):
+    global flag
     if isinstance(new_array, str):
         print('Не указаны размеры массива.')
         return new_array
@@ -34,15 +35,23 @@ def create_array(new_array):
             print('В массиве могут быть только целые числа')
             return new_array
         print('Значения записаны в массив.')
+        flag = True
         return np.array(values)
     elif choice_create == 2:
         print('Массив заполнен автоматически.')
+        flag = True
         return np.random.randint(0, 101, new_array.shape)
     elif choice_create == 3:
         return new_array
     else:
         print('Неверная команда.')
         return new_array
+
+def print_array(new_array):
+    print('Текущий массив:')
+    max_len = max(len(str(x)) for row in new_array for x in row)
+    for row in new_array:
+        print(" ".join(f"{x:>{max_len}}" for x in row))
 
 
 def menu():
@@ -64,7 +73,10 @@ def menu():
         elif choice == 2:
             array = create_array(array)
         elif choice == 3:
-            print(f'Выполнение функции {choice}')
+            if flag:
+                print_array(array)
+            else:
+                print('Массив не был создан.')
         elif choice == 4:
             print(f'Выполнение функции {choice}')
         elif choice == 5:
@@ -73,4 +85,5 @@ def menu():
             print('Ошибка')
 
 array = ''
+flag = False
 menu()
