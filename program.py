@@ -1,4 +1,6 @@
 import numpy as np
+from numpy.ma.extras import column_stack
+
 
 def array_size():
     try:
@@ -71,13 +73,18 @@ def functions(new_array):
         mask = (new_array == 10).any(axis=1)
         row_indices = np.where(mask)[0]
         if len(row_indices) > 0:
-            numbers = ", ".join(str(i + 1) for i in row_indices)
-            print(f"Найденные строки: {numbers}")
+            numbers = ', '.join(str(i + 1) for i in row_indices)
+            print(f'Найденные строки: {numbers}')
         else:
-            print("Указанных строк в массиве нет")
+            print('Указанных строк в массиве нет')
         return new_array
     elif choice_function == 'd':
-        print(f'Выполнение функции {choice_function}')
+        column_sums = new_array.sum(axis=0)
+        max_sum = column_sums.max()
+        max_columns_indices = np.where(column_sums == max_sum)[0]
+        max_columns_numbers = max_columns_indices + 1
+        print('Номера столбцов с максимальной суммой:', ', '.join(str(x) for x in max_columns_numbers), '(сумма:', max_sum, ')')
+        return new_array
     elif choice_function == 'e':
         print(f'Выполнение функции {choice_function}')
     else:
