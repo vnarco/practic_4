@@ -53,6 +53,28 @@ def print_array(new_array):
     for row in new_array:
         print(" ".join(f"{x:>{max_len}}" for x in row))
 
+def functions(new_array):
+    print('\nСписок функций:\n'
+          'a - Заменить все элементы, которые меньше 10, числом 42.\n'
+          'b - Преобразовать матрицу: поэлементно вычесть последнюю строку из всех строк, кроме последней.\n'
+          'c - Вывести номера тех строк массива, в которых есть хотя бы один элемент, равный 10.\n'
+          'd - Найти столбец с наибольшей суммой элементов.\n'
+          'e - Сделать функцию, меняющую местами элементы матрицы симметрично побочной диагонали.\n')
+    choice_function = input('Выбор функции: ')
+    if choice_function == 'a':
+        print(f'Выполнение функции {choice_function}')
+    if choice_function == 'b':
+        print(f'Выполнение функции {choice_function}')
+    if choice_function == 'c':
+        print(f'Выполнение функции {choice_function}')
+    if choice_function == 'd':
+        print(f'Выполнение функции {choice_function}')
+    if choice_function == 'e':
+        print(f'Выполнение функции {choice_function}')
+    else:
+        print(f'Выполнение функции {choice_function}')
+    
+
 
 def menu():
     while True:
@@ -78,7 +100,10 @@ def menu():
             else:
                 print('Массив не был создан.')
         elif choice == 4:
-            print(f'Выполнение функции {choice}')
+            if flag:
+                functions(array)
+            else:
+                print('Массив не был создан.')
         elif choice == 5:
             print(f'Выполнение функции {choice}')
         else:
