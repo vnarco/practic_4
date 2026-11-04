@@ -1,5 +1,10 @@
-import sys
+import numpy as np
 
+def array_size():
+    height = int(input('Введите высоту массива: '))
+    width = int(input('Введите ширину массива: '))
+    array = np.zeros((height, width))
+    return array
 
 def menu():
     while True:
