@@ -24,7 +24,7 @@ def create_array(new_array):
           '2 - Автоматически\n'
           '3 - Назад\n')
     choice_create = input('Введите желаемый вариант заполнения: ')
-    if choice_create == 1:
+    if choice_create == '1':
         rows, columns = new_array.shape
         values = []
         try:
@@ -40,11 +40,11 @@ def create_array(new_array):
         print('Значения записаны в массив.')
         flag = True
         return np.array(values)
-    elif choice_create == 2:
+    elif choice_create == '2':
         print('Массив заполнен автоматически.')
         flag = True
         return np.random.randint(0, 101, new_array.shape)
-    elif choice_create == 3:
+    elif choice_create == '3':
         return new_array
     else:
         print('Неверная команда.')
@@ -108,25 +108,25 @@ def menu():
               '4 - Выполнение функций\n'
               '5 - Выход\n')
         choice = input('Введите действие: ')
-        if choice == 1:
+        if choice == '1':
             array = array_size()
             if isinstance(array, np.ndarray):
                 print('Размеры массивы зафиксированы.')
             else:
                 print(array)
-        elif choice == 2:
+        elif choice == '2':
             array = create_array(array)
-        elif choice == 3:
+        elif choice == '3':
             if flag:
                 print_array(array)
             else:
                 print('Массив не был создан.')
-        elif choice == 4:
+        elif choice == '4':
             if flag:
                 array = functions(array)
             else:
                 print('Массив не был создан.')
-        elif choice == 5:
+        elif choice == '5':
             sys.exit()
         else:
             print('Неверная команда.')
