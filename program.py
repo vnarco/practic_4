@@ -14,7 +14,7 @@ def array_size():
 def create_array(new_array):
     if isinstance(new_array, str):
         print('Не указаны размеры массива.')
-        return
+        return new_array
     print('\nВарианты заполнения массива:\n'
           '1 - Вручную\n'
           '2 - Автоматически\n'
@@ -31,9 +31,9 @@ def create_array(new_array):
             values.append(values_in_row)
         return np.array(values)
     if choice_create == 2:
-        print(f'Выполнение функции {choice_create}')
+        return np.random.randint(0, 101, new_array.shape)
     if choice_create == 3:
-        print(f'Выполнение функции {choice_create}')
+        return new_array
     else:
         print(f'Выполнение функции {choice_create}')
 
