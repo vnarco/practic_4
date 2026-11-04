@@ -61,7 +61,7 @@ def functions(new_array):
           'b - Преобразовать матрицу: поэлементно вычесть последнюю строку из всех строк, кроме последней.\n'
           'c - Вывести номера тех строк массива, в которых есть хотя бы один элемент, равный 10.\n'
           'd - Найти столбец с наибольшей суммой элементов.\n'
-          'e - Сделать функцию, меняющую местами элементы матрицы симметрично побочной диагонали.\n')
+          'e - Поменять местами элементы матрицы симметрично побочной диагонали.\n')
     choice_function = input('Выбор функции: ')
     if choice_function == 'a':
         new_array[new_array < 10] = 42
@@ -86,9 +86,14 @@ def functions(new_array):
         print('Номера столбцов с максимальной суммой:', ', '.join(str(x) for x in max_columns_numbers), '(сумма:', max_sum, ')')
         return new_array
     elif choice_function == 'e':
-        print(f'Выполнение функции {choice_function}')
+        n = new_array.shape[0]
+        for i in range(n):
+            for j in range(n - 1 - i):
+                new_array[i, j], new_array[n - 1 - j, n - 1 - i] = new_array[n - 1 - j, n - 1 - i], new_array[i, j]
+        return new_array
     else:
-        print(f'Выполнение функции {choice_function}')
+        print('Такой функции не существует')
+        return new_array
 
 
 
